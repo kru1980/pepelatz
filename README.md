@@ -1,2 +1,2 @@
 Уроки Влад
-express mongo passport
+jQuery express mongo passport
