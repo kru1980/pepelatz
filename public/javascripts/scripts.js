@@ -1,2 +1,1 @@
-
-
+$(function(){function r(){$("form.login p.error, form.register p.error").remove(),$("form.login input, form.register input").removeClass("error")}var o=!0;$(".switch-button").on("click",function(e){e.preventDefault(),$("input").val(""),r(),o?(o=!1,$(".register").show("slow"),$(".login").hide()):(o=!0,$(".login").show("slow"),$(".register").hide())})});

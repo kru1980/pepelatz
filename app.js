@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
+var staticAsset = require("static-asset");
 const db = require("./config/db");
 
 const app = express();
@@ -23,6 +24,7 @@ mongoose
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(staticAsset(__dirname + "/public/"));
 app.use(express.static(path.join(__dirname, "public")));
 // Подкл jQuery
 app.use(
@@ -32,6 +34,10 @@ app.use(
 
 app.get("/", function(req, res) {
   res.render("index");
+});
+
+app.get("/", function(req, res) {
+  res.render(" index");
 });
 
 module.exports = app;
