@@ -7,6 +7,8 @@ var staticAsset = require("static-asset");
 // ругается eslint тк файлы лежат в гитигноре
 const db = require("./config/db");
 const config = require("./config/config");
+const routes = require("./routes/index");
+
 /* eslint-enable node/no-unpublished-require */
 
 const app = express();
@@ -17,6 +19,7 @@ const app = express();
 mongoose.Promise = global.Promise;
 mongoose
   .connect(db.mongoURI, {
+    useCreateIndex: true,
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
@@ -28,6 +31,7 @@ mongoose
 
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(staticAsset(__dirname + "/public/"));
 app.use(express.static(path.join(__dirname, "public")));
 // Подкл jQuery
@@ -36,13 +40,14 @@ app.use(
   express.static(path.join(__dirname, "node_modules", "jquery", "dist"))
 );
 
+// all routes
+
 app.get("/", function(req, res) {
   res.render("index");
 });
 
-app.get("/", function(req, res) {
-  res.render(" index");
-});
+// роут регистрации
+app.use("/api/auth", routes.auth);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

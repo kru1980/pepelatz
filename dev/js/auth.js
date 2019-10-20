@@ -43,13 +43,15 @@ $(function() {
       password: $("#register-password").val(),
       passwordConfirm: $("#register-password-confirm").val()
     };
-
+    console.log("отправляемые данные на сервер", data);
     $.ajax({
       type: "POST",
       data: JSON.stringify(data),
       contentType: "application/json",
       url: "/api/auth/register"
     }).done(function(data) {
+      console.log(data);
+
       if (!data.ok) {
         $(".register h2").after('<p class="error">' + data.error + "</p>");
         if (data.fields) {
