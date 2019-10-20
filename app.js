@@ -3,7 +3,11 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const path = require("path");
 var staticAsset = require("static-asset");
+/* eslint-disable node/no-unpublished-require */
+// ругается eslint тк файлы лежат в гитигноре
 const db = require("./config/db");
+const config = require("./config/config");
+/* eslint-enable node/no-unpublished-require */
 
 const app = express();
 
@@ -40,4 +44,6 @@ app.get("/", function(req, res) {
   res.render(" index");
 });
 
-module.exports = app;
+app.listen(config.PORT, function() {
+  console.log("Example app listening on port !" + config.PORT);
+});

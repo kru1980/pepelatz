@@ -11,9 +11,9 @@
     "delay": "2500"
   },
   "scripts": {
-    "dev": "nodemon index.js",
+    "dev": "nodemon app.js",
     "compiled": "gulp",
-    "start": "cross-env NODE_ENV=production PORT=3001 node index.js"
+    "start": "cross-env NODE_ENV=production PORT=3001 node app.js"
   },
   "keywords": [],
   "author": "",
