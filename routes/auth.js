@@ -46,7 +46,7 @@ router.post("/register", (req, res) => {
       fields: ["password"]
     });
   } else {
-    models.User.findOne({
+    User.findOne({
       login
     }).then(user => {
       if (user) {
@@ -68,8 +68,8 @@ router.post("/register", (req, res) => {
               .save()
               .then(user => {
                 console.log(user);
-                // req.session.userId = user.id;
-                // req.session.userLogin = user.login;
+                req.session.userId = user.id;
+                req.session.userLogin = user.login;
                 // req.session.userRole = "user";
                 res.json({
                   ok: true
@@ -89,7 +89,7 @@ router.post("/register", (req, res) => {
   }
 });
 
-// POST is register
+// POST is login
 router.post("/login", (req, res) => {
   const login = req.body.login;
   const password = req.body.password;
@@ -105,7 +105,7 @@ router.post("/login", (req, res) => {
       fields
     });
   } else {
-    models.User.findOne({
+    User.findOne({
       login
     })
       .then(user => {
@@ -126,7 +126,7 @@ router.post("/login", (req, res) => {
             } else {
               req.session.userId = user.id;
               req.session.userLogin = user.login;
-              req.session.userRole = user.role;
+              // req.session.userRole = user.role;
               res.json({
                 ok: true
               });

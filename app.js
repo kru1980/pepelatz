@@ -8,6 +8,9 @@ var staticAsset = require("static-asset");
 const db = require("./config/db");
 const config = require("./config/config");
 const routes = require("./routes/index");
+const session = require("express-session");
+
+const MongoStore = require("connect-mongo")(session);
 
 /* eslint-enable node/no-unpublished-require */
 
@@ -29,6 +32,19 @@ mongoose
   .catch(err => console.log(err));
 // mongo end
 
+// sessions
+app.use(
+  session({
+    secret: config.SESSION_SECRET,
+    resave: true,
+    saveUninitialized: false,
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection
+    }),
+    expires: new Date(Date.now() + 60 * 60 * 24 * 30)
+  })
+);
+
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -43,7 +59,11 @@ app.use(
 // all routes
 
 app.get("/", function(req, res) {
-  res.render("index");
+  const id = req.session.userId;
+  const login = req.session.userLogin;
+  res.render("index", {
+    user: { id, login }
+  });
 });
 
 // роут регистрации

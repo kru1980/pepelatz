@@ -9,7 +9,7 @@ $(function() {
     $("form.login input, form.register input").removeClass("error");
   }
 
-  // toggle
+  // toggle!
   var flag = true;
   $(".switch-button").on("click", function(e) {
     e.preventDefault();
@@ -61,6 +61,7 @@ $(function() {
         }
       } else {
         // $('.register h2').after('<p class="success">Отлично!</p>');
+        // рефреш страницы
         $(location).attr("href", "/");
       }
     });
@@ -91,6 +92,7 @@ $(function() {
         }
       } else {
         // $('.login h2').after('<p class="success">Отлично!</p>');
+        // рефреш страницы
         $(location).attr("href", "/");
       }
     });
