@@ -9,4 +9,5 @@ jQuery express mongo passport
   в packed.json удаляем cross-env "start": "cross-env NODE_ENV=production PORT=3001 node app.js"
   создаем файл с настройками нодимона и он настрой ки берет от туда, который перезаписывает файл .env
 
-видос 15 добавление поста
+  - в jQuery если значения необходимо взяьб из инпута - метод val()
+    если из дива метод html()

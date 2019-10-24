@@ -14,7 +14,11 @@ $borderRadius: 2px;
 @import "grid";
 @import "typography";
 @import "forms";
-@import "links";
+// @import "links";
+
+// во время разработки поключили стили из папки node_modules
+@import "../../node_modules/medium-editor/dist/css/medium-editor";
+@import "../../node_modules/medium-editor/dist/css/themes/default";
 
 html {
   display: flex;
