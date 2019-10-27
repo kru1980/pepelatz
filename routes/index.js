@@ -1,20 +1,9 @@
-const auth = require("./auth");
-const post = require("./post");
-const archive = require("./archive");
-// const comment = require('./comment');
-// const upload = require('./upload');
-// const admin = require('./admin');
+const auth = require('./auth');
+const post = require('./post');
+const archive = require('./archive');
 
 module.exports = {
   auth,
-  archive,
-  post
+  post,
+  archive
 };
-// module.exports = {
-//   auth,
-//   post,
-//   archive,
-//   comment,
-//   upload,
-//   admin
-// };

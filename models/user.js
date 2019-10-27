@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const schema = new Schema(
@@ -11,12 +11,6 @@ const schema = new Schema(
     password: {
       type: String,
       required: true
-    },
-    role: {
-      type: String,
-      enum: ['admin', 'user'],
-      required: true,
-      default: 'user'
     }
   },
   {
@@ -24,8 +18,8 @@ const schema = new Schema(
   }
 );
 
-schema.set('toJSON', {
+schema.set("toJSON", {
   virtuals: true
 });
 
-module.exports = mongoose.model('User', schema);
+module.exports = mongoose.model("User", schema);

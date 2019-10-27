@@ -13,7 +13,7 @@ const schema = new Schema(
       type: String
     },
     owner: {
-      type: Schema.Types.ObjectId, // присваиваем идентификатор пользователя к статье
+      type: Schema.Types.ObjectId,
       ref: "User"
     }
   },

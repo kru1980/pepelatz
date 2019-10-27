@@ -30,7 +30,7 @@ mongoose
   .then(() => {
     console.log("local db connected..");
     // вызываем генератор мок данных
-    // require("./mocks")()
+    // require("./mocks")();
   })
   .catch(err => console.log(err));
 // mongo end

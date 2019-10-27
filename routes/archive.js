@@ -18,7 +18,7 @@ function posts(req, res) {
     .then(posts => {
       models.Post.countDocuments()
         .then(count => {
-          res.render("index", {
+          res.render("archive/index", {
             posts,
             current: page,
             pages: Math.ceil(count / perPage),
@@ -93,7 +93,7 @@ router.get("/users/:login/:page*?", (req, res) => {
           owner: user.id
         })
           .then(count => {
-            res.render("index", {
+            res.render("archive/user", {
               posts,
               _user: user,
               current: page,

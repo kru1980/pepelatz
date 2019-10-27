@@ -1,6 +1,6 @@
 const faker = require("faker");
 const models = require("./models");
-const owner = "5db40de7ed2e8215f0589f1a";
+const owner = "5db40db7ed2e8215f0589f19";
 const TurndownService = require("turndown");
 
 // Процедура создания мок данных!!!
