@@ -6,6 +6,7 @@ var staticAsset = require("static-asset");
 /* eslint-disable node/no-unpublished-require */
 // ругается eslint тк файлы лежат в гитигноре
 const db = require("./config/db");
+
 const config = require("./config/config");
 const routes = require("./routes/index");
 const session = require("express-session");
@@ -28,6 +29,8 @@ mongoose
   })
   .then(() => {
     console.log("local db connected..");
+    // вызываем генератор мок данных
+    // require("./mocks")()
   })
   .catch(err => console.log(err));
 // mongo end
@@ -58,15 +61,16 @@ app.use(
 
 // all routes
 
-app.get("/", function(req, res) {
-  const id = req.session.userId;
-  const login = req.session.userLogin;
-  res.render("index", {
-    user: { id, login }
-  });
-});
+// app.get("/", function(req, res) {
+//   const id = req.session.userId;
+//   const login = req.session.userLogin;
+//   res.render("index", {
+//     user: { id, login }
+//   });
+// });
 
 // роут регистрации
+app.use("/", routes.archive);
 app.use("/api/auth", routes.auth);
 app.use("/post", routes.post);
 

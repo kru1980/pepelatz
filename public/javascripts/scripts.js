@@ -103,16 +103,27 @@ $(function() {
 
 /* eslint-disable no-undef */
 $(function() {
+  const editor = new MediumEditor("#post-body", {
+    placeholder: {
+      text: "",
+      hideOnClick: true
+    }
+  });
+
   // remove errors
   function removeErrors() {
     $(".post-form p.error").remove();
+    $(".post-form div, #post-body").removeClass("error");
     $(".post-form input, #post-body").removeClass("error");
   }
 
   // clear
-  $(".post-form input, #post-body").on("focus", function() {
+  $(".post-form div, #post-body").on("focus", function() {
     removeErrors();
   });
+  // $(".post-form input, #post-body").on("focus", function() {
+  //   removeErrors();
+  // });
 
   // publish
   $(".publish-button, .save-button").on("click", function(e) {
@@ -126,7 +137,8 @@ $(function() {
 
     var data = {
       title: $("#post-title").val(),
-      body: $("#post-body").val(),
+      // body: $("#post-body").val(),
+      body: $("#post-body").html(),
       isDraft: isDraft,
       postId: $("#post-id").val()
     };
@@ -147,12 +159,13 @@ $(function() {
         }
       } else {
         // $('.register h2').after('<p class="success">Отлично!</p>');
-        // $(location).attr('href', '/');
-        if (isDraft) {
-          $(location).attr("href", "/post/edit/" + data.post.id);
-        } else {
-          $(location).attr("href", "/posts/" + data.post.url);
-        }
+        $(location).attr("href", "/");
+
+        // if (isDraft) {
+        //   $(location).attr("href", "/post/edit/" + data.post.id);
+        // } else {
+        //   $(location).attr("href", "/posts/" + data.post.url);
+        // }
       }
     });
   });
