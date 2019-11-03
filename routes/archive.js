@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
-
+const moment = require("moment");
+moment.locale("ru");
+/* eslint-disable node/no-unpublished-require */
 const config = require("../config/config");
+/* eslint-enable node/no-unpublished-require */
 const models = require("../models");
 
 async function posts(req, res) {
@@ -82,8 +85,15 @@ router.get("/posts/:post", async (req, res, next) => {
         err.status = 404;
         next(err);
       } else {
+        const comments = await models.Comment.find({
+          post: post.id,
+          parent: { $exists: false }
+        });
+
         res.render("post/post", {
           post,
+          comments,
+          moment,
           user: {
             id: userId,
             login: userLogin
